@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+     
+        *{
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
+        }
+        body{
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background:white;
+        }
+        .wrapper{
+          position: relative;
+          max-width: 400px;
+          width: 100%;
+          background:lightgreen;
+          padding: 30px;
+          border-radius: 20px;
+          box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+       .wrapper h1{
+          position: relative;
+          font-size: 20px;
+          font-weight: 60;
+          color:grey;
+        }
+        .wrapper form{
+          margin-top: 30px;
+        }
+        .wrapper form .input-box{
+          height: 52px;
+          margin: 18px 0;
+        }
+        form .input-box input{
+          height: 100%;
+          width: 100%;
+          outline: none;
+          padding: 0 15px;
+          font-size: 17px;
+          font-weight: 400;
+          color: #333;
+          border: 1.5px red;
+          border-bottom-width: 2.5px;
+          border-radius: 6px;
+          transition: all 0.3s ease;
+        }
+        .input-box input:focus,
+        .input-box input:valid{
+          border-color: blue; 
+        }
+        form .policy{
+          display: flex;
+          align-items: center;
+        }
+        form h3{
+          color: #707070;
+          font-size: 14px;
+          font-weight: 500;
+          margin-left: 10px;
+        }
+        .input-box.button input{
+          color: #fff;
+          letter-spacing: 1px;
+          border: none;
+          background: #4070f4;
+          cursor: pointer;
+        }
+        .input-box.button input:hover{
+          background: blue;
+        }
+        form .text h3{
+         color: #333;
+         width: 100%;
+         text-align: center;
+        }
+        form .text h3 a{
+          color: #4070f4;
+          text-decoration: none;
+        }
+       form .text h3 a:hover{
+          text-decoration: underline;
+        } 
+        .error {
+          color: red;
+          font-size: 14px;
+        }
+    </style>
+    <title> Registration form</title>
+   </head>
+<body>
+  <div class="wrapper">
+    <h2>Registration</h2>
+    <form action="#" onsubmit="return validateForm()">
+      <div class="input-box">
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <div class="error" id="name-error"></div>
+      </div>
+      <div class="input-box">
+        <input type="text" id="email" placeholder="Enter your email" required>
+        <div class="error" id="email-error"></div>
+      </div>
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Create password" required>
+        <div class="error" id="password-error"></div>
+      </div>
+      <div class="input-box">
+        <input type="password" id="confirm-password" placeholder="Confirm password" required>
+        <div class="error" id="confirm-password-error"></div>
+      </div>
+      <div class="policy">
+        <input type="checkbox" id="terms">
+        <h3>I accept all terms & condition</h3>
+      </div>
+      <div class="input-box button">
+        <input type="Submit" value="Register Now">
+      </div>
+    
+    </form>
+  </div>
+  <script>
+    
+    function validateForm() {
+  document.getElementById("name-error").textContent = "";
+  document.getElementById("email-error").textContent = "";
+  document.getElementById("password-error").textContent = "";
+  document.getElementById("confirm-password-error").textContent = "";
+
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+  var confirmPassword = document.getElementById("confirm-password").value;
+  var terms = document.getElementById("terms").checked;
+  var valid = true;
+
+  if (!name) {
+    document.getElementById("name-error").textContent = "Please enter your name.";
+    valid = false;
+  }
+  if (!email.match(/^\w+([.-]?\w+)@\w+([.-]?\w+)(\.\w{2,3})+$/)) {
+    document.getElementById("email-error").textContent = "Please enter a valid email.";
+    valid = false;
+  }
+  if (!password) {
+    document.getElementById("password-error").textContent = "Please create a password.";
+    valid = false;
+  }
+  if (password.length<8) {
+    document.getElementById("password-error").textContent = "Password should have 8 characters ";
+    valid = false;
+  }
+  if (password !== confirmPassword) {
+    document.getElementById("confirm-password-error").textContent = "Passwords do not match.";
+    valid = false;
+  }
+  if (!terms) {
+    alert("Please accept the terms and conditions.");
+    valid = false;
+  }
+  if (valid) {
+    alert("Successfully Registered!");
+   
+  }
+  return false; 
+}
+  </script>
+</body>
+</html>
